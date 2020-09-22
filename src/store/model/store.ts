@@ -11,9 +11,10 @@ export interface Link {
 }
 
 export interface Labels {
-	outOfStock: string[];
+	outOfStock?: string[];
 	captcha?: string[];
 	bannedSeller?: string[];
+	inStock?: string[];
 }
 
 export interface Store {

@@ -46,12 +46,16 @@ async function lookup(browser: Browser, store: Store) {
 	/* eslint-disable no-await-in-loop */
 	for (const link of store.links) {
 		if (!filterSeries(link.series)) {
+			// Logger.info("skipped series");
 			continue;
 		}
 
 		if (!filterBrand(link.brand)) {
+			// Logger.info("skipped brand");
 			continue;
 		}
+
+		// Logger.info("about to load gpu page for: " + link);
 
 		const page = await browser.newPage();
 		page.setDefaultNavigationTimeout(Config.page.navigationTimeout);
@@ -82,6 +86,8 @@ async function lookup(browser: Browser, store: Store) {
 			await delay(getSleepTime());
 		} else if (response && response.status() === 429) {
 			Logger.warn(`✖ [${store.name}] Rate limit exceeded: ${graphicsCard}`);
+		} else if (store.labels.inStock || !includesLabels(textContent, store.labels.inStock)) {
+			Logger.info(`✖ [${store.name}] still out of stock: ${graphicsCard}`);
 		} else {
 			Logger.info(`🚀🚀🚀 [${store.name}] ${graphicsCard} IN STOCK 🚀🚀🚀`);
 			Logger.info(link.url);

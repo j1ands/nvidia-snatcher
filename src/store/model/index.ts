@@ -14,7 +14,8 @@ import {NewEggCa} from './newegg-ca';
 import {Nvidia} from './nvidia';
 import {OfficeDepot} from './officedepot';
 import {Store} from './store';
-import {Zotac} from './zotac';
+import {Pny} from "./pny";
+import {Zotac} from "./zotac";
 
 const masterList = new Map([
 	[Adorama.name, Adorama],
@@ -30,6 +31,7 @@ const masterList = new Map([
 	[NewEggCa.name, NewEggCa],
 	[Nvidia.name, Nvidia],
 	[OfficeDepot.name, OfficeDepot],
+	[Pny.name, Pny],
 	[Zotac.name, Zotac]
 ]);
 
